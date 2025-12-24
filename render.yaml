@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: ultimate-chat-server
+    runtime: docker
+    plan: free
+    region: oregon
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: RUST_LOG
+        value: info
+    autoDeploy: true

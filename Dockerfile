@@ -1,7 +1,8 @@
-FROM rust:1.75-slim as builder
+FROM rust:1.83-slim as builder
 WORKDIR /usr/src/app
 COPY . .
-RUN cargo build --release --bin server
+# We remove the lockfile to ensure Cargo builds fresh with the container's version
+RUN rm -f Cargo.lock && cargo build --release --bin server
 
 FROM debian:bookworm-slim
 WORKDIR /app
